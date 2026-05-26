@@ -89,12 +89,13 @@ func TestReport(t *testing.T) {
 			mutants: []mutator.Mutator{
 				stubMutant{status: mutator.TimedOut, mutantType: mutator.ConditionalsNegation, position: fakePosition},
 				stubMutant{status: mutator.TimedOut, mutantType: mutator.ConditionalsBoundary, position: fakePosition},
+				stubMutant{status: mutator.TimedOut, mutantType: mutator.InvertBooleanLiterals, position: fakePosition},
 			},
 			want: "\n" +
 				// Limit the time reporting to the first two units (millis are excluded)
 				testingLine +
 				"Killed: 0, Lived: 0, Not covered: 0\n" +
-				"Timed out: 2, Not viable: 0, Skipped: 0\n" +
+				"Timed out: 3, Not viable: 0, Skipped: 0\n" +
 				"Test efficacy: 0.00%\n" +
 				coverageLine,
 		},

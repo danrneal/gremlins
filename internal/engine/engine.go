@@ -128,13 +128,47 @@ func (mu *Engine) runOnFile(fileName string) {
 
 	ast.Inspect(file, func(node ast.Node) bool {
 		n, ok := NewTokenNode(node)
-		if !ok {
-			return true
+		if ok {
+			mu.findMutations(fileName, set, file, n)
 		}
-		mu.findMutations(fileName, set, file, n)
+
+		mu.findLiteralMutations(fileName, set, file, node)
 
 		return true
 	})
+}
+
+func (mu *Engine) findLiteralMutations(fileName string, set *token.FileSet, file *ast.File, node ast.Node) {
+	const (
+		trueStr  = "true"
+		falseStr = "false"
+	)
+
+	var mType mutator.Type
+
+	var isLiteral bool
+
+	if n, ok := node.(*ast.Ident); ok {
+		if n.Name == trueStr || n.Name == falseStr {
+			mType = mutator.InvertBooleanLiterals
+			isLiteral = true
+		}
+	}
+
+	if !isLiteral {
+		return
+	}
+
+	if !configuration.Get[bool](configuration.MutantTypeEnabledKey(mType)) {
+		return
+	}
+
+	pkg := mu.pkgName(fileName, file.Name.Name)
+	lm := NewLiteralMutant(pkg, set, file, node)
+	lm.SetType(mType)
+	lm.SetStatus(mu.mutationStatus(set.Position(node.Pos())))
+
+	mu.mutantStream <- lm
 }
 
 func (mu *Engine) findMutations(fileName string, set *token.FileSet, file *ast.File, node *NodeToken) {

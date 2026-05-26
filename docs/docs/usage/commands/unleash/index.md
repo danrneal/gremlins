@@ -254,6 +254,19 @@ Enables/disables the [INVERT BITWISE](../../mutations/invert_bitwise.md) mutant 
 gremlins unleash --invert-bitwise
 ```
 
+### Invert boolean literals
+
+:material-flag: `--invert-boolean-literals`
+· :material-sign-direction: Default: `false`
+
+Enables/disables the
+[INVERT BOOLEAN LITERALS](../../mutations/invert_boolean_literals.md)
+mutant type.
+
+```shell
+gremlins unleash --invert-boolean-literals
+```
+
 ### Invert bitwise assignments
 
 :material-flag: `--invert-bwassign` · :material-sign-direction: Default: `false`

@@ -58,6 +58,7 @@ nav:
           - usage/mutations/invert_assignments.md
           - usage/mutations/invert_bitwise.md
           - usage/mutations/invert_bitwise_assignments.md
+          - usage/mutations/invert_boolean_literals.md
           - usage/mutations/invert_logical.md
           - usage/mutations/invert_loop.md
           - usage/mutations/invert_negatives.md

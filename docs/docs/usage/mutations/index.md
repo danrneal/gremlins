@@ -24,4 +24,5 @@ Each _mutant type_ can be enabled or disabled, and only a subset of mutations is
 | [INVERT ASSIGNMENTS ](invert_assignments.md)           |  FALSE  |
 | [INVERT BITWISE ](invert_bitwise.md)                   |  FALSE  |
 | [INVERT BWASSIGN ](invert_bitwise_assignments.md)      |  FALSE  |
+| [INVERT BOOLEAN LITERALS](invert_boolean_literals.md)|  FALSE  |
 | [REMOVE_SELF_ASSIGNMENTS ](remove_self_assignments.md) |  FALSE  |

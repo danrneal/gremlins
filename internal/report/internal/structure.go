@@ -59,4 +59,5 @@ type MutatorType struct {
 	InvertLoopCtrl           int `json:"invert_loop_ctrl,omitempty"`
 	InvertNegatives          int `json:"invert_negatives,omitempty"`
 	RemoveSelfAssignments    int `json:"remove_self_assignments,omitempty"`
+	InvertBooleanLiterals    int `json:"invertBooleanLiterals,omitempty"`
 }
